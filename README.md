@@ -6,12 +6,12 @@
 
 1. Склонируйте репозиторий:
    ```bash
-   git clone https://github.com/Welzewool/test_1.git
+   git clone https://github.com/Welzewool/port_scanner.git
    ```
 
 2. Перейдите в папку проекта:
    ```bash
-   cd test_1
+   cd port_scanner
    ```
 
 3. Создайте и активируйте виртуальное окружение:
