@@ -46,3 +46,9 @@
 /OOP/
 /async/
 /.venv/
+.idea/
+*.iml
+*.pyc
+__pycache__/
+venv/
+.env
