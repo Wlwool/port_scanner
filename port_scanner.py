@@ -26,4 +26,3 @@ for port in ports:
         s.close
 print("Сканирование завершено!")
 
-
