@@ -1,4 +1,5 @@
 import socket
+import logging
 from dataclasses import dataclass
 
 
@@ -7,6 +8,9 @@ class PortScanner:
     host: str
     ports: list
 
+    def __post_init__(self):
+        logging.basicConfig(filename="scan_log.txt", level=logging.INFO)
+
     def _is_port_open(self, port: int) -> bool:
         s = socket.socket()
         s.settimeout(1)  # ставим тайм-аут в одну секунду
@@ -14,15 +18,12 @@ class PortScanner:
         try:
             # Пробуем соединиться, хост и порт передаем как список
             s.connect((self.host, port))
-            # Если соединение вызвало ошибку
+            return True
         except socket.error:
             # тогда ничего не делаем
-            pass
-        else:
-            # print(f"{host}: {port} порт активен")
-            # Закрываем соединение
-            s.close()
-            return True
+            return False
+        finally:
+            s.close()  # Закрываем соединение
 
     def scan_ports(self):
         print("Ожидайте, идет сканирование портов!")
@@ -30,5 +31,7 @@ class PortScanner:
         for port in self.ports:
             # Создаем сокет
             if self._is_port_open(port):
-                print(f"{self.host}: {port} порт активен")
+                message = f"{self.host}: {port} порт активен"
+                print(message)
+                logging.info(message)
         print("Сканирование завершено")
