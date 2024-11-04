@@ -1,6 +1,8 @@
 import socket
 import logging
+import time
 from dataclasses import dataclass
+from datetime import datetime
 from tqdm import tqdm
 
 
@@ -31,9 +33,15 @@ class PortScanner:
         # В цикле перебираем порты из списка
         for port in tqdm(self.ports, desc="Сканирование портов"):
             print(f" Сканирую порт: {port}")
+            time.sleep(0.1)
             # Создаем сокет
             if self._is_port_open(port):
                 message = f"{self.host}: {port} порт активен"
+                open_ports.append(port)
                 print(message)
                 logging.info(message)
         print("Сканирование завершено")
+        return {"host": self.host,
+                "open_ports": open_ports,
+                "timestamp": datetime.now()
+                }

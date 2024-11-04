@@ -1,4 +1,5 @@
 from src.port_scanner import PortScanner
+from database.database import create_database, save_report
 
 
 if __name__ == '__main__':
@@ -8,5 +9,8 @@ if __name__ == '__main__':
              143, 161, 179, 443, 445, 514, 515, 993, 995, 1080, 1194, 1433, 1702, 1723,
              3128, 3268, 3306, 3389, 5432, 5060, 5900, 5938, 8080, 10000, 20000
              ]
+    create_database()
     scanner = PortScanner(host, ports)
-    scanner.scan_ports()
+    report = scanner.scan_ports()
+
+    save_report(report)
