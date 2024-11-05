@@ -20,4 +20,10 @@ def create_database():
     Base.metadata.create_all(engine)
 
 def save_report(report):
-    pass
+    """
+    Сохраняет открытые порты в базу данных
+    """
+    for port in report["open_ports"]:
+        new_entry = ScanReport(host=report["host"], port=port, timestamp=report["timestamp"])
+        session.add(new_entry)
+    session.commit()
