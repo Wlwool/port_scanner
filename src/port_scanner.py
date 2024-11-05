@@ -30,6 +30,7 @@ class PortScanner:
 
     def scan_ports(self):
         print("Ожидайте, идет сканирование портов!")
+        open_ports = []
         # В цикле перебираем порты из списка
         for port in tqdm(self.ports, desc="Сканирование портов"):
             print(f" Сканирую порт: {port}")
