@@ -6,7 +6,7 @@
 
 1. Клонируем репозиторий:
    ```bash
-   git clone https://github.com/Welzewool/port_scanner.git
+   git clone https://github.com/Wlwool/port_scanner.git
    ```
 
 2. Перейдите в папку проекта:
@@ -67,8 +67,8 @@ example.com: 80 порт активен
 
 ## 📬 Контакты
 
-Если у вас есть вопросы или предложения, свяжитесь со мной через GitHub: [Welzewool](https://github.com/Welzewool).
+Если у вас есть вопросы или предложения, свяжитесь со мной через GitHub: [Welzewool](https://github.com/Wlwool).
 
 ---
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Welzewool&show_icons=true&hide_title=true&count_private=true&theme=radical)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Wlwool&show_icons=true&hide_title=true&count_private=true&theme=radical)
