@@ -4,7 +4,7 @@
 """
 from src.port_scanner import PortScanner
 from database.database import create_database, save_report
-from config import Config
+
 
 def test_different_modes():
     """Тестирование различных режимов сканирования"""
