@@ -33,8 +33,8 @@
 
 1. Клонируйте репозиторий:
 ```bash
-git clone <repository-url>
-cd test_1
+git clone https://github.com/Wlwool/port_scanner.git
+cd port_scanner
 ```
 
 2. Активируйте виртуальное окружение:
