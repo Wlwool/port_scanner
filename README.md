@@ -113,7 +113,7 @@ class Config:
     DEFAULT_TIMEOUT = 1.0      # таймаут в секундах
     SCAN_DELAY = 0.1          # задержка между сканированием
     MAX_RETRIES = 3           # максимальное количество попыток
-    
+
     # Диапазоны портов
     PORT_RANGES = {
         "well_known": list(range(1, 1025)),      # 1-1024
@@ -176,6 +176,6 @@ MIT License - см. файл [LICENSE](LICENSE)
 
 ---
 
-**Версия:** 2.0  
-**Автор:** Wlwool  
+**Версия:** 2.0
+**Автор:** Wlwool
 **Дата:** 2025
