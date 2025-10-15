@@ -70,7 +70,7 @@ def save_report(report: dict) -> None:
         raise
 
 
-def get_reports_by_host(host: str) -> list[type[ScanReport]]:
+def get_reports_by_host(host: str) -> list[ScanReport]:
     """Получение всех отчетов по хосту"""
     try:
         reports = session.query(ScanReport).filter(ScanReport.host == host).all()
@@ -80,7 +80,7 @@ def get_reports_by_host(host: str) -> list[type[ScanReport]]:
         return []
 
 
-def get_all_reports() -> list[type[ScanReport]]:
+def get_all_reports() -> list[ScanReport]:
     """Получение всех отчетов"""
     try:
         reports = session.query(ScanReport).all()
