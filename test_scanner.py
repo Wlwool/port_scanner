@@ -6,7 +6,7 @@ from database.db import create_database, save_report
 from src.port_scanner import PortScanner
 
 
-def test_different_modes():
+def test_different_modes() -> None:
     """Тестирование различных режимов сканирования"""
     host = "google.com"
 
