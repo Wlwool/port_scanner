@@ -64,7 +64,7 @@ exclude = [
 ]
 
 [tool.flake8]
-max-line-length = 90
+max-line-length = 88
 extend-ignore = [
     "E203",  # whitespace before ':'
     "W503",  # line break before binary operator
