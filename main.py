@@ -114,7 +114,7 @@ def perform_scan(scanner, mode):
     elif mode == "3":
         start, end = get_custom_range()
         print(
-            f"\n🔍 Сканирование диапазона {start} - {end} ({end-start + 1} портов)..."
+            f"\n🔍 Сканирование диапазона {start}-{end} ({end - start + 1} портов)..."
         )
         return scanner.scan_port_range(start, end)
     else:  # mode == "4"
