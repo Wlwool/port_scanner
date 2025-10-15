@@ -16,7 +16,7 @@ def test_different_modes():
     print("=" * 60)
 
     try:
-        # Создаем базу данных
+        # БД
         create_database()
 
         # Тест 1: Быстрое сканирование популярных портов
