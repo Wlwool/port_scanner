@@ -1,21 +1,29 @@
-from sqlalchemy import create_engine, Column, String, Integer, DateTime, Float
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-import sys
 import os
+import sys
+
+from sqlalchemy import Column, DateTime, Float, Integer, String, create_engine
+
+# from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import DeclarativeBase, sessionmaker
+
+from config import Config
 
 # Добавляем родительскую директорию в путь для импорта config
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from config import Config
 
-Base = declarative_base()
+
+class Base(DeclarativeBase):
+    pass
+
+
+# Base = declarative_base()
 engine = create_engine(Config.DATABASE_URL)
 Session = sessionmaker(bind=engine)
 session = Session()
 
 
 class ScanReport(Base):
-    __tablename__ = 'scan_reports'
+    __tablename__ = "scan_reports"
     id = Column(Integer, primary_key=True, autoincrement=True)
     host = Column(String, nullable=False)
     port = Column(Integer, nullable=False)
@@ -26,7 +34,7 @@ class ScanReport(Base):
     scan_delay = Column(Float, nullable=True)
 
 
-def create_database():
+def create_database() -> None:
     """Создание базы данных и таблиц"""
     try:
         Base.metadata.create_all(engine)
@@ -36,33 +44,33 @@ def create_database():
         raise
 
 
-def save_report(report):
+def save_report(report: dict) -> None:
     """
     Сохраняет результаты сканирования в базу данных
     """
     try:
         for port in report["open_ports"]:
             new_entry = ScanReport(
-                host=report["host"], 
-                port=port, 
+                host=report["host"],
+                port=port,
                 timestamp=report["timestamp"],
                 scan_duration=report.get("scan_duration"),
                 total_ports=report.get("total_ports"),
                 timeout=report.get("settings", {}).get("timeout"),
-                scan_delay=report.get("settings", {}).get("scan_delay")
+                scan_delay=report.get("settings", {}).get("scan_delay"),
             )
             session.add(new_entry)
-        
+
         session.commit()
         print(f"💾 Сохранено {len(report['open_ports'])} записей в базу данных")
-        
+
     except Exception as e:
         session.rollback()
         print(f"❌ Ошибка сохранения в базу данных: {e}")
         raise
 
 
-def get_reports_by_host(host: str):
+def get_reports_by_host(host: str) -> list[type[ScanReport]]:
     """Получение всех отчетов по хосту"""
     try:
         reports = session.query(ScanReport).filter(ScanReport.host == host).all()
@@ -72,7 +80,7 @@ def get_reports_by_host(host: str):
         return []
 
 
-def get_all_reports():
+def get_all_reports() -> list[type[ScanReport]]:
     """Получение всех отчетов"""
     try:
         reports = session.query(ScanReport).all()
@@ -82,7 +90,7 @@ def get_all_reports():
         return []
 
 
-def clear_reports():
+def clear_reports() -> None:
     """Очистка всех отчетов"""
     try:
         session.query(ScanReport).delete()
